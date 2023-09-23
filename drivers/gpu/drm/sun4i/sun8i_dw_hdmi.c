@@ -423,6 +423,9 @@ static int sun8i_dw_hdmi_bind(struct device *dev, struct device *master,
 
 	return 0;
 
+err_remove_dw_hdmi:
+	drm_bridge_remove(&hdmi->enc_bridge);
+	dw_hdmi_remove(hdmi->hdmi);
 err_deinit_phy:
 	sun8i_hdmi_phy_deinit(hdmi->phy);
 err_remove_dw_hdmi:

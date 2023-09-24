@@ -571,6 +571,7 @@ static int sun8i_mixer_bind(struct device *dev, struct device *master,
 	mixer->engine.node = dev->of_node;
 	/* default output format, supported by all mixers */
 	mixer->engine.format = MEDIA_BUS_FMT_RGB888_1X24;
+
 	/* default color encoding, ignored with RGB I/O */
 	mixer->engine.encoding = DRM_COLOR_YCBCR_BT601;
 

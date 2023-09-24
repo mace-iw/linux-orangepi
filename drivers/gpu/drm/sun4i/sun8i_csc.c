@@ -251,7 +251,7 @@ static void sun8i_csc_setup(struct regmap *map, u32 base,
 			    enum drm_color_encoding encoding,
 			    enum drm_color_range range)
 {
-	u32 base_reg, val;
+	u32 base_reg, val = 0;
 	const u32 *table;
 	int i;
 

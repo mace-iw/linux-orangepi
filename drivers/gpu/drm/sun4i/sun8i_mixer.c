@@ -446,7 +446,7 @@ static u32 *sun8i_mixer_get_supported_fmts(struct sunxi_engine *engine, u32 *num
 }
 
 static const struct sunxi_engine_ops sun8i_engine_ops = {
-	.commit			= sun8i_mixer_commit,
+	.vblank_quirk		= sun8i_mixer_commit,
 	.layers_init		= sun8i_layers_init,
 	.mode_set		= sun8i_mixer_mode_set,
 	.get_supported_fmts	= sun8i_mixer_get_supported_fmts,

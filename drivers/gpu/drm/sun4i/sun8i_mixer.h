@@ -12,6 +12,7 @@
 #include <drm/drm_plane.h>
 
 #include "sunxi_engine.h"
+#include "sun8i_vi_scaler.h"
 
 #define SUN8I_MIXER_SIZE(w, h)			(((h) - 1) << 16 | ((w) - 1))
 #define SUN8I_MIXER_COORD(x, y)			((y) << 16 | (x))
@@ -200,6 +201,8 @@ struct sun8i_mixer {
 
 	struct regmap			*top_regs;
 	struct regmap			*disp_regs;
+
+	struct scaler_state		vi_scl_states[4];
 };
 
 enum {

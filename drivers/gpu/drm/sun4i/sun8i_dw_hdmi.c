@@ -11,6 +11,7 @@
 
 #include <drm/drm_atomic_state_helper.h>
 #include <drm/drm_bridge_connector.h>
+#include <drm/drm_edid.h>
 #include <drm/drm_managed.h>
 #include <drm/drm_modeset_helper_vtables.h>
 #include <drm/drm_of.h>
@@ -51,16 +52,21 @@ static void sun8i_hdmi_enc_hpd_notify(struct drm_bridge *bridge,
 				      enum drm_connector_status status)
 {
 	struct sun8i_dw_hdmi *hdmi = bridge_to_sun8i_dw_hdmi(bridge);
-	struct edid *edid;
+	const struct drm_edid *drm_edid;
 
 	if (!hdmi->cec_notifier)
 		return;
 
 	if (status == connector_status_connected) {
-		edid = drm_bridge_get_edid(hdmi->hdmi_bridge, hdmi->connector);
-		if (edid)
-			cec_notifier_set_phys_addr_from_edid(hdmi->cec_notifier,
-							     edid);
+		drm_edid = drm_bridge_edid_read(hdmi->hdmi_bridge, hdmi->connector);
+		if (drm_edid) {
+           /*
+            * FIXME/HACK - Workaround raw EDID removal
+			 * https://www.mail-archive.com/dri-devel@lists.freedesktop.org/msg478550.html
+            */
+            const struct edid *edid = drm_edid_raw(drm_edid);
+			cec_notifier_set_phys_addr_from_edid(hdmi->cec_notifier, edid);
+		}
 	} else {
 		cec_notifier_phys_addr_invalidate(hdmi->cec_notifier);
 	}

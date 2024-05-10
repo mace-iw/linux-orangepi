@@ -256,8 +256,22 @@
 				ranges = <0 0x00028000 0x30000>;
 
 				de3_sram: sram-section@0 {
-					compatible = "allwinner,sun50i-a64-sram-c";
+					compatible = "allwinner,sun50i-h616-sram-c",
+						     "allwinner,sun50i-a64-sram-c";
 					reg = <0x0000 0x1e000>;
+				};
+			};
+
+			sram_c1: sram@1a00000 {
+				compatible = "mmio-sram";
+				reg = <0x01a00000 0x200000>;
+				#address-cells = <1>;
+				#size-cells = <1>;
+				ranges = <0 0x01a00000 0x200000>;
+
+				ve_sram: sram-section@0 {
+					compatible = "allwinner,sun50i-h616-sram-c1";
+					reg = <0x000000 0x200000>;
 				};
 			};
 		};
@@ -957,6 +971,52 @@
 			status = "disabled";
 		};
 
+		hdmi: hdmi@6000000 {
+			#sound-dai-cells = <0>;
+			compatible = "allwinner,sun50i-h616-dw-hdmi",
+				     "allwinner,sun50i-h6-dw-hdmi";
+			reg = <0x06000000 0x10000>;
+			reg-io-width = <1>;
+			interrupts = <GIC_SPI 63 IRQ_TYPE_LEVEL_HIGH>;
+			clocks = <&ccu CLK_BUS_HDMI>, <&ccu CLK_HDMI_SLOW>,
+				 <&ccu CLK_HDMI>, <&ccu CLK_HDMI_CEC>,
+				 <&ccu CLK_HDCP>, <&ccu CLK_BUS_HDCP>;
+			clock-names = "iahb", "isfr", "tmds", "cec", "hdcp",
+				      "hdcp-bus";
+			resets = <&ccu RST_BUS_HDMI>, <&ccu RST_BUS_HDCP>;
+			reset-names = "ctrl", "hdcp";
+			phys = <&hdmi_phy>;
+			phy-names = "phy";
+			status = "disabled";
+
+			ports {
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				hdmi_in: port@0 {
+					reg = <0>;
+
+					hdmi_in_tcon_top: endpoint {
+						remote-endpoint = <&tcon_top_hdmi_out_hdmi>;
+					};
+				};
+
+				hdmi_out: port@1 {
+					reg = <1>;
+				};
+			};
+		};
+
+		hdmi_phy: hdmi-phy@6010000 {
+			compatible = "allwinner,sun50i-h616-hdmi-phy";
+			reg = <0x06010000 0x10000>;
+			clocks = <&ccu CLK_BUS_HDMI>, <&ccu CLK_HDMI_SLOW>;
+			clock-names = "bus", "mod";
+			resets = <&ccu RST_BUS_HDMI_SUB>;
+			reset-names = "phy";
+			#phy-cells = <0>;
+		};
+
 		tcon_top: tcon-top@6510000 {
 			compatible = "allwinner,sun50i-h6-tcon-top";
 			reg = <0x06510000 0x1000>;
@@ -964,8 +1024,8 @@
 				 <&ccu CLK_TCON_TV0>;
 			clock-names = "bus", "tcon-tv0";
 			clock-output-names = "tcon-top-tv0";
-			#clock-cells = <0>;
 			resets = <&ccu RST_BUS_TCON_TOP>;
+			#clock-cells = <1>;
 
 			ports {
 				#address-cells = <1>;
@@ -1013,14 +1073,15 @@
 					reg = <5>;
 
 					tcon_top_hdmi_out_hdmi: endpoint {
-						/* placeholder for HDMI  - remote-endpoint = <&hdmi_in_tcon_top>;*/
+						remote-endpoint = <&hdmi_in_tcon_top>;
 					};
 				};
 			};
 		};
-		
+
 		tcon_lcd0: lcd-controller@6511000 {
-			compatible = "allwinner,sun8i-r40-tcon-lcd";
+			compatible = "allwinner,sun50i-h6-tcon-lcd",
+				     "allwinner,sun8i-r40-tcon-lcd";
 			reg = <0x06511000 0x1000>;
 			interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&ccu CLK_BUS_TCON_LCD0>, <&ccu CLK_TCON_LCD0>;
@@ -1048,7 +1109,7 @@
 				};
 			};
 		};
-		
+
 		tcon_tv0: lcd-controller@6515000 {
 			compatible = "allwinner,sun50i-h6-tcon-tv",
 				     "allwinner,sun8i-r40-tcon-tv";
@@ -1057,7 +1118,6 @@
 			clocks = <&ccu CLK_BUS_TCON_TV0>,
 				 <&tcon_top CLK_TCON_TOP_TV0>;
 			clock-names = "ahb", "tcon-ch1";
-			#clock-cells = <0>;
 			resets = <&ccu RST_BUS_TCON_TV0>;
 			reset-names = "lcd";
 			status = "disabled";

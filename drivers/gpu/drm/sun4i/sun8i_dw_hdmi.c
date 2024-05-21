@@ -427,11 +427,6 @@ err_remove_dw_hdmi:
 	drm_bridge_remove(&hdmi->enc_bridge);
 	dw_hdmi_remove(hdmi->hdmi);
 err_deinit_phy:
-	sun8i_hdmi_phy_deinit(hdmi->phy);
-err_remove_dw_hdmi:
-	drm_bridge_remove(&hdmi->enc_bridge);
-	dw_hdmi_remove(hdmi->hdmi);
-err_deinit_phy:
 	sun8i_hdmi_phy_deinit(phy);
 err_disable_clk_tmds:
 	clk_disable_unprepare(hdmi->clk_tmds);

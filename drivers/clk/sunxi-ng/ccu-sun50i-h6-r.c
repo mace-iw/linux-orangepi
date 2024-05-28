@@ -239,8 +239,6 @@ static int sun50i_h616_ppu_pd_set_power(const struct sun50i_h616_ppu_pd *pd,
 {
 	if (power_on)
 		writel(0, pd->base + PD_H616_GPU_REG);
-	else
-		writel(1, pd->base + PD_H616_GPU_REG);
 
 	return 0;
 }

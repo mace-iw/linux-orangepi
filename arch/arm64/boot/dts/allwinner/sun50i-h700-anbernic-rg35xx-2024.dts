@@ -36,6 +36,17 @@
 	chosen {
 		stdout-path = "serial0:115200n8";
 	};
+	
+	connector {
+		compatible = "hdmi-connector";
+		type = "d";
+
+		port {
+			hdmi_con_in: endpoint {
+				remote-endpoint = <&hdmi_out_con>;
+			};
+		};
+	};
 
 	gpio_keys_gamepad: gpio-keys-gamepad {
 		compatible = "gpio-keys";
@@ -244,6 +255,17 @@
 	status = "okay";
 };
 
+&hdmi {
+	hvcc-supply = <&reg_bldo1>;
+	status = "okay";
+};
+
+&hdmi_out {
+	hdmi_out_con: endpoint {
+		remote-endpoint = <&hdmi_con_in>;
+	};
+};
+
 &mmc0 {
 	vmmc-supply = <&reg_cldo3>;
 	disable-wp;
@@ -399,6 +421,10 @@
 	tcon_lcd0_out_lcd: endpoint@1 {
 		remote-endpoint = <&panel_in_rgb>;
 	};
+};
+
+&tcon_tv0 {
+	status = "okay";
 };
 
 &uart0 {

@@ -881,14 +881,12 @@ static int sun8i_hdmi_phy_probe(struct platform_device *pdev)
 	return 0;
 }
 
-static int sun8i_hdmi_phy_remove(struct platform_device *pdev)
+static void sun8i_hdmi_phy_remove(struct platform_device *pdev)
 {
 	struct sun8i_hdmi_phy *phy = platform_get_drvdata(pdev);
 
 	cec_notifier_cec_adap_unregister(phy->cec_notifier, phy->cec_adapter);
 	cec_unregister_adapter(phy->cec_adapter);
-
-	return 0;
 }
 
 struct platform_driver sun8i_hdmi_phy_driver = {

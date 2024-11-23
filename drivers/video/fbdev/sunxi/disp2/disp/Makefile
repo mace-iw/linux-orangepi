@@ -69,5 +69,3 @@ disp-objs += lcd/panels.o lcd/lcd_source.o lcd/default_panel.o \
 		lcd/WilliamLcd.o lcd/bp101wx1-206.o lcd/k101im2qa04.o  lcd/fx070.o \
 		lcd/CC08021801_310_800X1280.o lcd/K080_IM2HYL802R_800X1280.o lcd/K101_IM2BYL02_L_800X1280.o
 disp-objs += $(obj_low)
-
-disp-$(CONFIG_SUNXI_DISP2_PQ) += pq/drv_pq.o pq/pq_common.o

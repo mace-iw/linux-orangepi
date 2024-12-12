@@ -10,6 +10,7 @@
 # Normal rules (sorted alphabetically)
 #
 .*
+!.devcontainer
 *.a
 *.asn1.[ch]
 *.bin

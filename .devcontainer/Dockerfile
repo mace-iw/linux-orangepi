@@ -4,6 +4,7 @@ RUN apt-get update && \
     export DEBIAN_FRONTEND=noninteractive && \
     apt-get -y install \
         gcc-aarch64-linux-gnu \
+        u-boot-tools \
         bc \
         flex \
         bison \

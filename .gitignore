@@ -12,6 +12,7 @@
 #
 .*
 !.devcontainer
+!.config
 *.a
 *.asn1.[ch]
 *.bin

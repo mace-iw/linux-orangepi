@@ -257,12 +257,6 @@ menu "LCD panels select"
 source "drivers/video/fbdev/sunxi/disp2/disp/lcd/Kconfig"
 endmenu
 
-menu "LCD fb panels select"
-	depends on LCD_FB
-
-source "drivers/video/fbdev/sunxi/lcd_fb/panels/Kconfig"
-endmenu
-
 menu "Display engine feature select"
 	depends on DISP2_SUNXI
 

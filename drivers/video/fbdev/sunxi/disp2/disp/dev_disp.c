@@ -2511,7 +2511,6 @@ static s32 disp_init(struct platform_device *pdev)
 #if defined(SUPPORT_EINK)
 	g_disp_drv.eink_manager[0] = disp_get_eink_manager(0);
 #endif
-	lcd_init();
 	bsp_disp_open();
 
 

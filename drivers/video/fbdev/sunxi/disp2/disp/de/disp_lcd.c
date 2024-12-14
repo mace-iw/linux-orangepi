@@ -2972,7 +2972,6 @@ static s32 disp_lcd_set_static_config(struct disp_device *lcd,
 	if ((config->reserve1 & DISP_LCD_MODE_DIRTY_MASK) &&
 	    config->reserve1 != lcdp->config.reserve1) {
 		ret = disp_lcd_init(lcd, config->reserve1 & 0xf);
-		lcd_set_panel_funs();
 		lcdp->config.reserve1 = config->reserve1;
 	} else
 		ret = 0;

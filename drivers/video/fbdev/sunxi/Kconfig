@@ -251,12 +251,6 @@ config LCD_FB_ENABLE_DEFERRED_IO
 	---help---
 	  Enable linux framebuffer FB_DEFERRED_IO for LCD_FB
 
-menu "LCD panels select"
-	depends on DISP2_SUNXI
-
-source "drivers/video/fbdev/sunxi/disp2/disp/lcd/Kconfig"
-endmenu
-
 menu "Display engine feature select"
 	depends on DISP2_SUNXI
 

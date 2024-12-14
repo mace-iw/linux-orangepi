@@ -26,7 +26,6 @@ extern struct disp_layer *disp_get_layer_1(u32 disp, u32 layer_id);
 extern struct disp_smbl *disp_get_smbl(u32 disp);
 extern struct disp_enhance *disp_get_enhance(u32 disp);
 extern struct disp_capture *disp_get_capture(u32 disp);
-extern struct disp_device *disp_get_lcd(u32 disp);
 extern struct disp_manager *disp_get_layer_manager(u32 disp);
 extern unsigned int composer_dump(char *buf);
 extern int disp_suspend(struct device *dev);

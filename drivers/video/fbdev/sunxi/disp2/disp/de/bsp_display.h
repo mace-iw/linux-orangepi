@@ -74,7 +74,6 @@ s32 bsp_disp_get_screen_width_from_output_type(u32 disp, u32 output_type,
 					       u32 output_mode);
 s32 bsp_disp_get_screen_height_from_output_type(u32 disp, u32 output_type,
 						u32 output_mode);
-s32 bsp_disp_get_lcd_registered(u32 disp);
 s32 bsp_disp_get_hdmi_registered(void);
 s32 bsp_disp_get_output_type(u32 disp);
 s32 bsp_disp_device_switch(int disp, enum disp_output_type output_type,
@@ -103,24 +102,6 @@ s32 bsp_disp_get_fps(u32 disp);
 s32 bsp_disp_get_health_info(u32 disp, struct disp_health_info *info);
 s32 bsp_disp_set_edp_func(struct disp_tv_func *func);
 
-/* lcd */
-s32 bsp_disp_lcd_set_panel_funs(char *name, struct disp_lcd_panel_fun *lcd_cfg);
-s32 bsp_disp_lcd_backlight_enable(u32 disp);
-s32 bsp_disp_lcd_backlight_disable(u32 disp);
-s32 bsp_disp_lcd_pwm_enable(u32 disp);
-s32 bsp_disp_lcd_pwm_disable(u32 disp);
-s32 bsp_disp_lcd_power_enable(u32 disp, u32 power_id);
-s32 bsp_disp_lcd_power_disable(u32 disp, u32 power_id);
-s32 bsp_disp_lcd_set_bright(u32 disp, u32 bright);
-s32 bsp_disp_lcd_get_bright(u32 disp);
-s32 bsp_disp_lcd_tcon_enable(u32 disp);
-s32 bsp_disp_lcd_tcon_disable(u32 disp);
-s32 bsp_disp_lcd_pin_cfg(u32 disp, u32 en);
-s32 bsp_disp_lcd_gpio_set_value(u32 disp, u32 io_index, u32 value);
-s32 bsp_disp_lcd_gpio_set_direction(u32 disp, unsigned int io_index,
-				    u32 direction);
-struct disp_lcd_flow *bsp_disp_lcd_get_open_flow(u32 disp);
-struct disp_lcd_flow *bsp_disp_lcd_get_close_flow(u32 disp);
 s32 bsp_disp_get_panel_info(u32 disp, struct disp_panel_para *info);
 
 s32 bsp_disp_vsync_event_enable(u32 disp, bool enable);

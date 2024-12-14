@@ -105,7 +105,7 @@ static void dispdbg_process(void)
 			pr_warn("Invalid para\n");
 			return;
 		}
-		lcd = disp_get_lcd(disp);
+		lcd = 0;
 		if (lcd == NULL) {
 			sprintf(dispdbg_priv.info, "get %s fail!",
 				dispdbg_priv.name);

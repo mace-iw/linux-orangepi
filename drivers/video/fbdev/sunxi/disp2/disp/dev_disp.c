@@ -1796,8 +1796,7 @@ static void start_work(struct work_struct *work)
 			int disp_mode = g_disp_drv.disp_init.disp_mode;
 			int output_type =
 			    g_disp_drv.disp_init.output_type[screen_id%DE_NUM];
-			int lcd_registered =
-			    bsp_disp_get_lcd_registered(screen_id);
+			int lcd_registered = 0;
 			int hdmi_registered = bsp_disp_get_hdmi_registered();
 
 			__inf
@@ -2671,34 +2670,6 @@ static int disp_mem_release(int sel)
 int sunxi_disp_get_source_ops(struct sunxi_disp_source_ops *src_ops)
 {
 	memset((void *)src_ops, 0, sizeof(struct sunxi_disp_source_ops));
-
-	src_ops->sunxi_lcd_set_panel_funs = bsp_disp_lcd_set_panel_funs;
-	src_ops->sunxi_lcd_delay_ms = disp_delay_ms;
-	src_ops->sunxi_lcd_delay_us = disp_delay_us;
-	src_ops->sunxi_lcd_backlight_enable = bsp_disp_lcd_backlight_enable;
-	src_ops->sunxi_lcd_backlight_disable = bsp_disp_lcd_backlight_disable;
-	src_ops->sunxi_lcd_pwm_enable = bsp_disp_lcd_pwm_enable;
-	src_ops->sunxi_lcd_pwm_disable = bsp_disp_lcd_pwm_disable;
-	src_ops->sunxi_lcd_power_enable = bsp_disp_lcd_power_enable;
-	src_ops->sunxi_lcd_power_disable = bsp_disp_lcd_power_disable;
-	src_ops->sunxi_lcd_tcon_enable = bsp_disp_lcd_tcon_enable;
-	src_ops->sunxi_lcd_tcon_disable = bsp_disp_lcd_tcon_disable;
-	src_ops->sunxi_lcd_pin_cfg = bsp_disp_lcd_pin_cfg;
-	src_ops->sunxi_lcd_gpio_set_value = bsp_disp_lcd_gpio_set_value;
-	src_ops->sunxi_lcd_gpio_set_direction = bsp_disp_lcd_gpio_set_direction;
-#ifdef SUPPORT_DSI
-	src_ops->sunxi_lcd_dsi_dcs_write = bsp_disp_lcd_dsi_dcs_wr;
-	src_ops->sunxi_lcd_dsi_gen_write = bsp_disp_lcd_dsi_gen_wr;
-	src_ops->sunxi_lcd_dsi_clk_enable = bsp_disp_lcd_dsi_clk_enable;
-	src_ops->sunxi_lcd_dsi_mode_switch = bsp_disp_lcd_dsi_mode_switch;
-	src_ops->sunxi_lcd_dsi_gen_short_read = bsp_disp_lcd_dsi_gen_short_read;
-	src_ops->sunxi_lcd_dsi_dcs_read = bsp_disp_lcd_dsi_dcs_read;
-	src_ops->sunxi_lcd_dsi_set_max_ret_size = bsp_disp_lcd_set_max_ret_size;
-#endif
-	src_ops->sunxi_lcd_cpu_write = tcon0_cpu_wr_16b;
-	src_ops->sunxi_lcd_cpu_write_data = tcon0_cpu_wr_16b_data;
-	src_ops->sunxi_lcd_cpu_write_index = tcon0_cpu_wr_16b_index;
-	src_ops->sunxi_lcd_cpu_set_auto_mode = tcon0_cpu_set_auto_mode;
 
 	return 0;
 }

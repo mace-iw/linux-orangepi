@@ -10,7 +10,7 @@ disp-objs += disp_sys_intf.o
 disp-objs += disp_trace.o
 disp-$(CONFIG_DISP2_SUNXI_COMPOSER) += dev_composer.o
 disp-objs += de/disp_display.o de/disp_features.o de/disp_device.o \
-	     de/disp_lcd.o de/disp_manager.o de/disp_private.o \
+	     de/disp_manager.o de/disp_private.o \
 	     de/disp_smart_backlight.o de/disp_enhance.o de/disp_capture.o \
 	     de/disp_hdmi.o de/disp_tv.o de/disp_vdevice.o \
 	     de/disp_vga.o \

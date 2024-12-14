@@ -127,7 +127,6 @@ struct disp_irq_info {
 };
 
 
-extern struct disp_device *disp_get_lcd(u32 disp);
 
 extern struct disp_device *disp_get_hdmi(u32 disp);
 
